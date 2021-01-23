@@ -168,7 +168,7 @@ class MainData():
         h1Entry.config(textvariable = self.h1)
         h1Entry.grid(column = 1, row = 9)
 
-        h2Label = Label(self.root, text = "Elevación inicial al N.M[m]: ")
+        h2Label = Label(self.root, text = "Elevación final al N.M[m]: ")
         h2Label.grid(column = 0, row = 10)
 
         h2Entry = Entry(self.root)
