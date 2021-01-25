@@ -40,7 +40,7 @@ def gas(T,P,Z,qg,rog,rom, Cd,dm):
     Lss = Leff + (d / 12)
     Re = Lss / (d/12)
 
-    while Re > 3.52:
+    while Re > 3.5:
         
         Leff = (420 * (((T*Z*qg) / P) * (rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d/12)
         Lss = Leff + (d / 12)
@@ -93,7 +93,7 @@ def liquido(gammam, ql, Leff):
     Lssl = (4 / 3) * Leffl
     Rel = Lssl / (d1 / 12)
 
-    while Rel > 3.52:
+    while Rel > 3.5:
 
         Leffl = (tr * ql) / (0.7 * (d1**2))
         Lssl = (4 / 3) * Leffl
