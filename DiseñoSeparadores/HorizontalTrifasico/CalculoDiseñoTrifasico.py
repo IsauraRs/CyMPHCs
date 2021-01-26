@@ -107,7 +107,9 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
     rom = gammam * 62.43
     print("rom: ", rom)
 
-
+    countercd = 0
+    counterg = 0
+    counterr = 0
     #Coeficiente de arrastre por método iterativo
     
     Cd = 0.34
@@ -132,6 +134,7 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
         cdList.append(Cd)
 
         ve = cdList[-1] - cdList[-2]
+        countercd += 1
 
     d = dmax
 
@@ -145,19 +148,8 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
         Lss = Leff + (d / 12)
         Red = Lss / (d/12)
         d -= 0.01
+        counterg += 1
     
-    '''else:
-
-        if Red < 3.5:
-
-            while Red < 3.5:
-
-                Leff = (420 * (((T*Z*qg) / P)) * ((rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d)
-                Lss = Leff + (d / 12)
-                Red = Lss / (d/12)
-                d += 0.0001
-    '''
-
     #Dimensionamiento por tiempo de retención
 
     d1 = dmax
@@ -171,16 +163,7 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
         Lssr = (4 / 3) * Leffr
         Rer = Lssr / (d1 / 12)
         d1 -= 0.01
-
-    '''else:
-        if Rer < 3.5:
-            while Rer < 3.5:
-
-                Leffr = (1.42 * ((qw * tr) + (qo * tr))) / (d1**2)
-                Lssr = (4 / 3) * Leffr
-                Rer = Lssr / (d1 / 12)
-                d1 += 0.0001
-    '''
+        counterr += 1
 
 
     if Leff > Leffr:
@@ -206,9 +189,12 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
     print("dr: ", d1)
     print("Leffin", Leffg)
     print("β: ", Beta)
+    print("Iteración cd: ", countercd)
+    print("Iteración gas: ", counterg)
+    print("Iteración tiempo de retención: ", counterr)
 
 
-    return Cd, dmax, qo, qw, Vt, Red, Leff, Lss, d, Leffr, Lssr, Rer, d1, Leffg 
+    return Cd, dmax, qo, qw, Vt, Red, Leff, Lss, d, Leffr, Lssr, Rer, d1, Leffg, Beta
 
 
 #dimCapacidadGas(0.33,26.11,56.19,8.6,0.02,120,20,610.6,0.83,121.32,0.094,26,7600,0,0,0)

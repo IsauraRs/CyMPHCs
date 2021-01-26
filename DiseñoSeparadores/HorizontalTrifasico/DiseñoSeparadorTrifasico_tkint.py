@@ -76,11 +76,6 @@ class Data():
             self.ho.set(t[1])
             self.tr.set(t[2])
 
-        
-        def dimensionamiento():
-
-            Beta = float(self.Beta.get())
-            
             cg = dimCapacidadGas(t[1],roo, t[2],mug,dm,qg,T,Z,P,rog,pw,ql,qo,qw, api, t[0],rw)
 
             self.cdR.set(cg[0])
@@ -97,8 +92,7 @@ class Data():
             self.RelR.set(cg[11])
             self.dlR.set(cg[12])
             self.Lefffinal.set(cg[13])
-
-
+            self.Beta.set(cg[14])
 
 
         def bGraph():
@@ -345,11 +339,12 @@ class Data():
         dmaxRes.config(bg = "firebrick1", font = ('Helvetica' , 16))
 
         BetaLabel = Label(self.root, text = "β: ")
-        BetaLabel.grid(column = 0, row = 18)
+        BetaLabel.grid(column = 2, row = 17)
 
-        BetaEntry = Entry(self.root)
-        BetaEntry.config(textvariable = self.Beta)
-        BetaEntry.grid(column = 1, row = 18)
+        BetaRes = Label(self.root, textvariable = self.Beta)
+        BetaRes.grid(column = 3, row = 17)
+        BetaRes.config(bg = "firebrick1", font = ('Helvetica' , 16))
+        
 
 
 
@@ -358,9 +353,6 @@ class Data():
 
         bGraphButton = Button(self.root, text = "Gráfico para β", command = bGraph)
         bGraphButton.grid(column = 1, row = 17)
-
-        dimButton = Button(self.root, text = "Dimensionar", command = dimensionamiento)
-        dimButton.grid(column = 0, row = 19)
 
 
         self.root.mainloop()
