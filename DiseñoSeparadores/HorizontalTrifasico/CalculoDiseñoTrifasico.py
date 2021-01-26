@@ -205,6 +205,7 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
     print("Rer", Rer)
     print("dr: ", d1)
     print("Leffin", Leffg)
+    print("β: ", Beta)
 
 
     return Cd, dmax, qo, qw, Vt, Red, Leff, Lss, d, Leffr, Lssr, Rer, d1, Leffg 
