@@ -36,21 +36,28 @@ def gas(T,P,Z,qg,rog,rom, Cd,dm):
 
     d = 5
     #T = 
-    Leff = (420 * (((T*Z*qg) / P) * (rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d/12)
+    #Leff = (420 * (((T*Z*qg) / P) * (rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d) #/12)
+    Leff = (420 * (((T*Z*qg) / P)) * ((rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d)
     Lss = Leff + (d / 12)
-    Re = Lss / (d/12)
+    Re = Lss / (d / 12)
 
-    while Re > 3.5:
+    counter = 0
+
+    while Re > 3.51:
         
-        Leff = (420 * (((T*Z*qg) / P) * (rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d/12)
+        #Leff = (420 * (((T*Z*qg) / P) * (rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d)# /12)
+        Leff = (420 * (((T*Z*qg) / P)) * ((rog / (rom - rog)) * (Cd/dm)) ** 0.5) / (d)
         Lss = Leff + (d / 12)
         Re = Lss / (d/12)
         d += 0.01
-        '''print(Leff)
-        print(Lss)
-        print(Re)
-        print(d)'''
+        counter += 1
     
+    print("Iteración: ", counter)
+    print("Leff", Leff)
+    print(Lss)
+    print(Re)
+    print(d)
+
     return Leff, Lss, Re, d
 
 def liquido(gammam, ql, Leff):
@@ -93,14 +100,14 @@ def liquido(gammam, ql, Leff):
     Lssl = (4 / 3) * Leffl
     Rel = Lssl / (d1 / 12)
 
-    while Rel > 3.5:
+    while Rel > 3.51:
 
         Leffl = (tr * ql) / (0.7 * (d1**2))
         Lssl = (4 / 3) * Leffl
         Rel = Lssl / (d1 / 12)
         d1 += 0.01
 
-        '''print(d1)
+        '''
         print(Leffl)
         print(Lssl)
         print(Rel)'''
@@ -110,10 +117,13 @@ def liquido(gammam, ql, Leff):
         #print("Leff: ", Leff)
         Leffinal = Leff 
 
-    else:
+    elif Leff < Leffl:
 
         #print("Leffl", Leffl)
         Leffinal = Leffl
+
+    print(d1)
+    print(Leffinal)
     
     return Leffl, Lssl, Rel, d1, Leffinal, tr
 

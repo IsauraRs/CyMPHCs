@@ -182,7 +182,7 @@ class IngresoDatos():
         dlLabel = Label(self.root, text = "d(líquido): ")
         dlLabel.grid(column = 2, row = 8)
 
-        dlRes = Label(self.root, textvariable = self.dR)
+        dlRes = Label(self.root, textvariable = self.dlR)
         dlRes.grid(column = 3, row = 8)
         dlRes.config(bg = "firebrick1", font = ('Helvetica' , 16))
 
