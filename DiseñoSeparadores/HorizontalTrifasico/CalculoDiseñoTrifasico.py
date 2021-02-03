@@ -192,7 +192,7 @@ def dimCapacidadGas(ho, roo, tr, mug, dm, qg, T, Z, P, rog, pw, ql,qo,qw, api, A
     print("Iteración cd: ", countercd)
     print("Iteración gas: ", counterg)
     print("Iteración tiempo de retención: ", counterr)
-
+    print("Re:", Re)
 
     return Cd, dmax, qo, qw, Vt, Red, Leff, Lss, d, Leffr, Lssr, Rer, d1, Leffg, Beta
 
